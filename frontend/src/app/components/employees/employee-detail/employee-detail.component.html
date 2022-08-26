@@ -1,0 +1,50 @@
+<app-navigation></app-navigation>
+<div class="main">
+  <app-header></app-header>
+  <section id="employeeAdd">
+    <div class="container shadow-2">
+      <div class="container-list grid" *ngIf="employee">
+        <div class="header col-11 mt-3">
+          <div class="avatar-img">
+            <img alt="Card" src="../../../assets/images/img-employees/employee2.png" alt="iamge">
+          </div>
+        </div>
+        <div class="body col-11">
+          <div class="grid">
+            <div class="col-12 md:col-12 lg:col-6">
+              <div class="info-item">
+                <p>Full name : <span>{{employee.name | uppercase}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Phone : <span>{{employee.phone}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Work start date : <span>{{employee.enrollDate | date:'MM/dd/yyyy'}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Description : <span>{{employee.work}}</span></p>
+              </div>
+            </div>
+            <div class="col-12 md:col-12 lg:col-6">
+              <div class="info-item">
+                <p>Gender : <span>{{employee.gender}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Email : <span>{{employee.email}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Status : <span>{{employee.status}}</span></p>
+              </div>
+              <div class="info-item">
+                <p>Role : <span>{{employee.role}}</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <p-button label="Exit" icon="pi pi-check" [style]="{'height': '40px'}" [routerLink]="['/employee-list']"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

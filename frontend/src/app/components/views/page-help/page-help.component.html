@@ -1,0 +1,52 @@
+<app-navigation></app-navigation>
+<div class="main">
+  <app-header> </app-header>
+  <div class="surface-section px-4 py-8 md:px-6 lg:px-8 surface-border relative" *ngIf="!data.employee">
+    <div class="text-700 text-center">
+        <div class="text-blue-600 font-bold mb-3"><i class="pi pi-discord"></i>&nbsp;HELP FOR YOU</div>
+        <div class="text-900 font-bold text-5xl mb-3">This is the help site</div>
+        <div class="text-700 text-2xl mb-5">You must be logged in to access the site</div>
+        <button [routerLink]="['/login']"  pButton pRipple label="Join Now" icon="pi pi-discord" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"></button>
+        <br>
+        <div class="inline-flex align-items-center info-icon">
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-twitter"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-github"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-facebook"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-youtube"></span>
+          </button>
+        </div>
+    </div>
+  </div>
+  <div class="surface-section px-4 py-8 md:px-6 lg:px-8" *ngIf="data.employee">
+    <div class="text-700 text-center">
+        <div class="text-blue-600 font-bold mb-3"><i class="pi pi-discord"></i>&nbsp;HELP FOR YOU</div>
+        <div class="text-900 font-bold text-5xl mb-3">This is the help site</div>
+        <div class="text-700 text-2xl mb-5">Thank you for visiting our website</div>
+        <button [routerLink]="['/home']"  pButton pRipple label="Black To Home" icon="pi pi-discord" class="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"></button>
+        <br>
+        <div class="inline-flex align-items-center info-icon">
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-twitter"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-github"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-facebook"></span>
+          </button>
+          <button class="p-button-text p-button-plain p-button-rounded mr-3 mt-2 p-button p-component p-button-icon-only">
+            <span class="pi pi-youtube"></span>
+          </button>
+        </div>
+    </div>
+  </div>
+
+</div>
+

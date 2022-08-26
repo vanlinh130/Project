@@ -1,0 +1,50 @@
+@import "primeflex/primeflex.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --blue: #287bff;
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+}
+
+.container-one {
+    position: relative;
+    width: 100%;
+}
+
+.main {
+  position: absolute;
+  width: calc(100% - 250px);
+  left: 250px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+
+/* Responsive */
+/* PC */
+@media (min-width: 64em) {
+}
+
+/* Tablet*/
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+  .main {
+    width: calc(100%);
+    left: 80px;
+  }
+}
+
+/* Mobile */
+@media (max-width:  46.1875em) {
+  .main {
+    width: calc(100%);
+    left: 0;
+  }
+}

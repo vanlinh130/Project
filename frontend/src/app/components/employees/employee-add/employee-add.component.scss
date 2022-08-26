@@ -1,0 +1,44 @@
+.surface-card {
+  .card-header {
+    background-color: var(--blue);
+    padding: 10px 0;
+    .text-center {
+      margin-bottom: 0px ;
+      color: var(--white);
+    }
+  }
+
+  .formgrid {
+    .form-control {
+      padding: 9px 12px;
+      width: 100%;
+      font-size: 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+    }
+  }
+
+  .p-error p {
+    font-size: 13.3px;
+    margin-top: 5px;
+  }
+}
+
+
+.card-footer {
+  margin-left: 68%;
+}
+
+/* Tablet*/
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+  .card-footer {
+    margin-left: 40%;
+  }
+}
+
+/* Mobile */
+@media (max-width:  46.1875em) {
+  .card-footer {
+    margin-left: 0px;
+  }
+}

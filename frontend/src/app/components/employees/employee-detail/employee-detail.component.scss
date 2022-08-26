@@ -1,0 +1,45 @@
+.container {
+  margin-top: 20px;
+  // background: url('https://www.primefaces.org/primeblocks-ng/assets/images/blocks/hero/hero-2.jpg') no-repeat;
+  // background-size: cover;
+  .container-list {
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    .header {
+      .avatar-img {
+        display: flex;
+        justify-content: center;
+        img {
+          width: 30%;
+          height: 30%;
+        }
+      }
+    }
+
+    .body {
+      .info-item {
+        border-bottom: 1px solid #ccc;
+        font-size: 16px;
+        padding: 15px 0;
+        font-weight: 600;
+        p {
+          margin-bottom: 0;
+          span{
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    .footer {
+      float: right;
+      margin-top: 20px;
+    }
+  }
+}
+
+#employeeAdd {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,57 @@
+<div class="form-group">
+  <div class="form-login px-4 py-8 md:px-6 lg:px-6">
+    <div class="form-login-main">
+      <button type="button" [routerLink]="['/home']" class="p-button-text mr-2 p-button p-component">
+        <span class="p-button-icon-left pi pi-home mb-1"></span>
+        <span class="p-button-label">Go Back</span>
+      </button>
+      <div class="content flex shadow-2">
+        <div class="login-img col-12 w-6 cursor-pointer bg-cover">
+          <img src="../../../assets/images/img-users/login.svg" alt="image login">
+        </div>
+        <div class="surface-section w-full col-12 md:w-4 p-6 md:p-5">
+          <div class="text-center mb-3">
+            <img src="../../../assets/images/logo.png" alt="Image" height="50" class="mb-1">
+            <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
+            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+            <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" [routerLink]="['/register']">Create
+              today!</a>
+          </div>
+          <div>
+
+            <div class="mb-3">
+              <label for="email" class="block text-900 font-medium mb-2">Email *</label>
+              <input id="email" #email="ngModel" type="email" name="email" [(ngModel)]="employee.email" submitted required
+                pInputText class="w-full mb-2" email="@gmail.com" placeholder="abc@gmail.com" style="margin: 0px"
+                [ngClass]="{'ng-dirty': (email.invalid && submitted) || (email.dirty && email.invalid)}">
+              <small *ngIf="(email.invalid && submitted) || (email.dirty && email.invalid)" class="p-error">
+                <p *ngIf="email.errors?.['required']" class="vali-form">Email is required </p>
+                <p *ngIf="email.errors?.['email']" class="vali-form">For example abc@gmail.com </p>
+              </small>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="block text-900 font-medium mb-2">Password *</label>
+              <input #password="ngModel" id="password" type="password" name="password" [(ngModel)]="employee.password"
+                submitted required pInputText minlength="6" class="w-full mb-2" placeholder="password"
+                [ngClass]="{'ng-dirty': (password.invalid && submitted) || (password.dirty && password.invalid)}">
+              <small *ngIf="(password.invalid && submitted) || (password.dirty && password.invalid)" class="p-error">
+                <p *ngIf="password.errors?.['required']" class="vali-form">Password is required </p>
+                <p *ngIf="password.errors?.['minlength']" class="vali-form">Password 6 characters is required </p>
+              </small>
+            </div>
+
+            <div class="flex align-items-center justify-content-between mb-3">
+              <div class="flex align-items-center">
+                <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="rememberme1" class="text-900">Remember me</label>
+              </div>
+              <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
+            </div>
+            <button pButton pRipple label="Login" (click)="login()" icon="pi pi-user" class="w-full"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

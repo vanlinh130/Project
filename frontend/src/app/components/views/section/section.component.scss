@@ -1,0 +1,32 @@
+img {
+  width: 90px;
+  height: 90px;
+}
+
+// Responsive Mobile
+@media (max-width:  46.1875em) {
+  img {
+    margin-left: 36%;
+  }
+
+  .user-name{
+    text-align: center;
+  }
+
+  .user-info {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .user-btn {
+    margin-left: 25%;
+  }
+
+  .collections {
+    margin-left: -7px;
+  }
+
+  .data {
+    margin-right: 24px;
+  }
+}

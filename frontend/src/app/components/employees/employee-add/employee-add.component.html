@@ -1,0 +1,316 @@
+<app-navigation></app-navigation>
+<div class="main">
+  <app-header></app-header>
+  <div class="surface-card p-4 shadow-2 border-round col-10 md:col-8 lg:col-8 col-offset-1 md:col-offset-2 lg:col-offset-2 mt-3" >
+    <form id="addForm" (ngSubmit)="onSubmit()" [formGroup]="employeeForm">
+      <div class="card-header mb-3">
+        <h2 class="text-center">Add New Employee</h2>
+      </div>
+      <div class="grid formgrid p-fluid">
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="name">Name *</label>
+          <input formControlName="name" id="name" type="text" name="name" placeholder="Full name"
+            pInputText [(ngModel)]="employee.name" style="height: 40px;"
+            [ngClass]="{'ng-dirty': (employeeForm.get('name')?.invalid && submitted) ||
+            (employeeForm.get('name')?.dirty && employeeForm.get('name')?.invalid)}">
+
+          <small id="nameHid" *ngIf="(employeeForm.get('name')?.invalid && submitted) ||
+            (employeeForm.get('name')?.dirty && employeeForm.get('name')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('name')?.errors?.['required']">Name is required</p>
+            <p *ngIf="employeeForm.get('name')?.errors?.['minlength']">Must write their full name</p>
+          </small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="email">Email *</label>
+          <input formControlName="email" id="email" type="email" name="email"
+            placeholder="abc@gmail.com" pInputText [(ngModel)]="employee.email" email="@gmail.com" style="height: 40px;"
+            [ngClass]="{'ng-dirty': (employeeForm.get('email')?.invalid && submitted) ||
+            (employeeForm.get('email')?.dirty && employeeForm.get('email')?.invalid)}">
+
+          <small id="emailHid" *ngIf="(employeeForm.get('email')?.invalid && submitted) ||
+            (employeeForm.get('email')?.dirty && employeeForm.get('email')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required</p>
+            <p *ngIf="employeeForm.get('email')?.errors?.['emailPattern']">For example abc@gmail.com</p>
+          </small>
+
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="phone">Phone *</label>
+          <input formControlName="phone" id="phone" type="text" name="phone" placeholder="Phone" pInputText
+            [(ngModel)]="employee.phone" style="height: 40px;"
+            [ngClass]="{'ng-dirty': (employeeForm.get('name')?.invalid && submitted) ||
+            (employeeForm.get('name')?.dirty && employeeForm.get('name')?.invalid)}">
+
+          <small id="phoneHid" *ngIf="(employeeForm.get('phone')?.invalid && submitted) ||
+            (employeeForm.get('phone')?.dirty && employeeForm.get('phone')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('phone')?.errors?.['required']">Phone is required</p>
+            <p *ngIf="employeeForm.get('phone')?.errors?.['maxlength']">
+              Phone no more than 10 numbers
+            </p>
+          </small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="password">Password *</label>
+          <input formControlName="password" id="password" type="password" name="password"
+            placeholder="password"  pInputText [(ngModel)]="employee.password" style="height: 40px;"
+            [ngClass]="{'ng-dirty': (employeeForm.get('password')?.invalid && submitted) ||
+            (employeeForm.get('password')?.dirty && employeeForm.get('password')?.invalid)}">
+
+          <small id="passwordHid" *ngIf="(employeeForm.get('password')?.invalid && submitted) ||
+            (employeeForm.get('password')?.dirty && employeeForm.get('password')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('password')?.errors?.['required']">Password is required</p>
+            <p *ngIf="employeeForm.get('password')?.errors?.['minlength']">Password > 6 characters</p>
+          </small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="enrollDate">Date *</label>
+          <p-calendar formControlName="enrollDate" id="enrollDate" type="text" name="enrollDate"
+            placeholder="99/99/9999" [showIcon]="true" [(ngModel)]="employee.enrollDate" [style]="{'height': '40px'}"
+            [ngClass]="{'ng-dirty': (employeeForm.get('enrollDate')?.invalid && submitted) ||
+            (employeeForm.get('enrollDate')?.dirty && employeeForm.get('enrollDate')?.invalid)}"></p-calendar>
+
+          <small id="enrollDateHid" *ngIf="(employeeForm.get('enrollDate')?.invalid && submitted) ||
+            (employeeForm.get('enrollDate')?.dirty && employeeForm.get('enrollDate')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('enrollDate')?.errors?.['required']">Date is required</p>
+          </small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6 lg:flex ">
+          <div class="field mb-3 col-12 md:col-12 lg:col-6">
+            <label for="status">Status *</label>
+            <br>
+            <select id="status" type="text" name="status" class="form-control"
+              [(ngModel)]="employee.status" formControlName="status"
+              [ngClass]="{'ng-dirty': (employeeForm.get('status')?.invalid && submitted) ||
+              (employeeForm.get('status')?.dirty && employeeForm.get('status')?.invalid)}">
+              <option>Đang làm việc</option>
+              <option>Đã nghĩ việc</option>
+              <option>Đang chờ</option>
+            </select>
+            <small id="statusHid" *ngIf="(employeeForm.get('status')?.invalid && submitted) ||
+              (employeeForm.get('status')?.dirty && employeeForm.get('status')?.invalid)" class="p-error">
+              <p *ngIf="employeeForm.get('status')?.errors?.['required']">Status is required</p>
+            </small>
+          </div>
+
+          <div class="field mb-3 col-12 md:col-12 lg:col-6">
+            <label for="role">Role *</label>
+            <br>
+            <select id="role" type="text" name="role" class="form-control" formControlName="role"
+              [(ngModel)]="employee.role" formControlName="role"
+              [ngClass]="{'ng-dirty': (employeeForm.get('role')?.invalid && submitted) ||
+              (employeeForm.get('role')?.dirty && employeeForm.get('role')?.invalid)}">
+              <option>Leader</option>
+              <option>Employee</option>
+            </select>
+            <small id="roleHid" *ngIf="(employeeForm.get('role')?.invalid && submitted) ||
+              (employeeForm.get('role')?.dirty && employeeForm.get('role')?.invalid)" class="p-error">
+              <p *ngIf="employeeForm.get('role')?.errors?.['required']">Role is required</p>
+            </small>
+          </div>
+        </div>
+
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="gender">Gender *</label>
+          <input id="gender" type="text" name="gender"
+            pInputText [(ngModel)]="employee.gender"
+            formControlName="gender" placeholder=""  style="height: 40px;"
+            [ngClass]="{'ng-dirty': (employeeForm.get('gender')?.invalid && submitted) ||
+            (employeeForm.get('gender')?.dirty && employeeForm.get('gender')?.invalid)}">
+
+          <small id="genderHid" *ngIf="(employeeForm.get('gender')?.invalid && submitted) ||
+            (employeeForm.get('gender')?.dirty && employeeForm.get('gender')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('gender')?.errors?.['required']">Gender is required</p>
+          </small>
+
+          <div [style]="{'margin': '20px 0'}">
+            <div class="field-radiobutton male-btn-radio col-12 md:col-6 lg:col-4"
+              [style]="{'float': 'left', 'padding-right': '30px'}">
+              <p-radioButton name="gender" value="Male" [(ngModel)]="employee.gender"
+               formControlName="gender" inputId="gender1"></p-radioButton>
+              <label for="gender1" [style]="{'margin': '0 8px'}">Male</label>
+            </div>
+            <div class="field-radiobutton col-12 md:col-6 lg:col-4" [style]="{'float': 'left', 'padding-right': '30px'}">
+              <p-radioButton name="gender" value="Female" [(ngModel)]="employee.gender"
+                formControlName="gender" inputId="gender2"></p-radioButton>
+              <label for="gender2" [style]="{'margin': '0 8px'}">Female</label>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="work">Description</label>
+          <textarea formControlName="description" rows="3" cols="30" id="work" type="text" name="work"
+            placeholder="Description..."  pInputTextarea [(ngModel)]="employee.work"
+            [ngClass]="{'ng-dirty': (employeeForm.get('description')?.invalid && submitted) ||
+            (employeeForm.get('description')?.dirty && employeeForm.get('description')?.invalid)}"></textarea>
+
+          <small id="descriptionHid" *ngIf="(employeeForm.get('description')?.invalid && submitted) ||
+            (employeeForm.get('description')?.dirty && employeeForm.get('description')?.invalid)" class="p-error">
+            <p *ngIf="employeeForm.get('description')?.errors?.['required']">Description is required</p>
+            <p *ngIf="employeeForm.get('description')?.errors?.['maxlength']">Description < 100 characters</p>
+          </small>
+        </div>
+      </div>
+
+      <div class="card-footer text-muted">
+        <div class="footer-btn">
+          <p-button [routerLink]="['/employee-list']" label="Cancel" icon="pi pi-times" styleClass="p-button-secondary w-full md:w-auto lg:w-auto h-2.5rem mr-3 mb-3 md:mb-0 lg:mb-0 "></p-button>
+          <p-button label="Save" icon="pi pi-check" (click)="save()" styleClass="w-full md:w-auto lg:w-auto h-2.5rem"></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- <app-navigation></app-navigation>
+<div class="main">
+  <app-header></app-header>
+  <div class="surface-card p-4 shadow-2 border-round col-10 md:col-8 lg:col-8 col-offset-1 md:col-offset-2 lg:col-offset-2 mt-3" >
+    <form id="addForm" (ngSubmit)="onSubmit()" #addForm="ngForm">
+      <div class="card-header mb-3">
+        <h2 class="text-center">Add New Employee</h2>
+      </div>
+      <div class="grid formgrid p-fluid">
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="name">Name *</label>
+          <input #name="ngModel" id="name" type="text" name="name" placeholder="Full name" required
+            pInputText [(ngModel)]="employee.name" [ngClass]="{'ng-dirty': (name.invalid && submitted) || (name.dirty && name.invalid)}" style="height: 40px;">
+          <small *ngIf="(name.invalid && submitted) || (name.dirty && name.invalid)" class="p-error">Name is required.</small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="email">Email *</label>
+          <input #email="ngModel" id="email" type="email" name="email"
+            placeholder="abc@gmail.com" required pInputText [(ngModel)]="employee.email" email="@gmail.com"
+            [ngClass]="{'ng-dirty': (email.invalid && submitted) || (email.dirty && email.invalid)}" style="height: 40px;">
+          <div *ngIf="(email.invalid && submitted) || (email.dirty && email.invalid)" class="p-error">
+            <p *ngIf="email.errors?.['required']" class="vali-form">Email is required </p>
+            <p *ngIf="email.errors?.['email']" class="vali-form">For example abc@gmail.com </p>
+          </div>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="phone">Phone *</label>
+          <input #phone="ngModel" id="phone" type="text" name="phone"
+            placeholder="Phone" required pInputText minlength="10" maxlength="10"
+            [(ngModel)]="employee.phone"
+            [ngClass]="{'ng-dirty': (phone.invalid && submitted) || (phone.dirty && phone.invalid)}" style="height: 40px;">
+          <div *ngIf="(phone.invalid && submitted) || (phone.dirty && phone.invalid)" class="p-error">
+            <p *ngIf="phone.errors?.['required']" class="vali-form">Phone is required </p>
+            <p *ngIf="phone.errors?.['minlength']" class="vali-form">Phone 10 characters is required </p>
+          </div>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="password">Password *</label>
+          <input #password="ngModel" id="password" type="password" name="password"
+            placeholder="password" required pInputText minlength="6" [(ngModel)]="employee.password"
+            [ngClass]="{'ng-dirty': (password.invalid && submitted) || (password.dirty && password.invalid)}" style="height: 40px;">
+          <div *ngIf="(password.invalid && submitted) || (password.dirty && password.invalid)" class="p-error">
+            <p *ngIf="password.errors?.['required']" class="vali-form">Password is required </p>
+            <p *ngIf="password.errors?.['minlength']" class="vali-form">Password 6 characters is required</p>
+          </div>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="enrollDate">Date *</label>
+          <p-calendar #enrollDate="ngModel" id="enrollDate" type="text" name="enrollDate"
+            placeholder="99/99/9999" [required]="true" [showIcon]="true" [(ngModel)]="employee.enrollDate"
+            [ngClass]="{'ng-dirty': (enrollDate.invalid && submitted) || (enrollDate.dirty && enrollDate.invalid)}"
+            [style]="{'height': '40px'}"></p-calendar>
+          <small *ngIf="(enrollDate.invalid && submitted) || (enrollDate.dirty && enrollDate.invalid)"
+            class="p-error">enrollDate is required.</small>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6 lg:flex ">
+          <div class="field mb-3 col-12 md:col-12 lg:col-6">
+            <label for="status">Status *</label>
+            <br>
+            <select #status="ngModel" id="status" type="text" name="status" class="form-control" required
+              [(ngModel)]="employee.status"
+              [ngClass]="{'ng-dirty': (status.invalid && submitted) || (status.dirty && status.invalid)}">
+              <option>Đang làm việc</option>
+              <option>Đã nghĩ việc</option>
+              <option>Đang chờ</option>
+            </select>
+            <div *ngIf="(status.invalid && submitted) || (status.dirty && status.invalid)"
+              class="p-error">
+              <p *ngIf="status.errors?.['required']" class="vali-form">Status is required </p>
+            </div>
+          </div>
+
+          <div class="field mb-3 col-12 md:col-12 lg:col-6">
+            <label for="role">Role *</label>
+            <br>
+            <select #role="ngModel" id="role" type="text" name="role" class="form-control" required
+              [(ngModel)]="employee.role"
+              [ngClass]="{'ng-dirty': (role.invalid && submitted) || (role.dirty && role.invalid)}">
+              <option>Leader</option>
+              <option>Employee</option>
+            </select>
+            <div *ngIf="(role.invalid && submitted) || (role.dirty && role.invalid)" class="p-error">
+              <p *ngIf="role.errors?.['required']" class="vali-form">Role is required </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="gender">Gender *</label>
+          <input #gender="ngModel" id="gender" type="text" name="gender"
+            [placeholder]="male" required pInputText [(ngModel)]="employee.gender" placeholder=""
+            [ngClass]="{'ng-dirty': (gender.invalid && submitted) || (gender.dirty && gender.invalid)}" style="height: 40px;">
+          <div *ngIf="(gender.invalid && submitted) || (gender.dirty && gender.invalid)" class="p-error">
+            <p *ngIf="gender.errors?.['required']" class="vali-form">Gender is required </p>
+          </div>
+
+          <div [style]="{'margin': '20px 0'}">
+            <div class="field-radiobutton male-btn-radio col-12 md:col-6 lg:col-4"
+              [style]="{'float': 'left', 'padding-right': '30px'}">
+              <p-radioButton name="gender" value="Male" [(ngModel)]="employee.gender" inputId="gender1">
+              </p-radioButton>
+              <label for="gender1" [style]="{'margin': '0 8px'}">Male</label>
+            </div>
+            <div class="field-radiobutton col-12 md:col-6 lg:col-4" [style]="{'float': 'left', 'padding-right': '30px'}">
+              <p-radioButton name="gender" value="Female" [(ngModel)]="employee.gender" inputId="gender2">
+              </p-radioButton>
+              <label for="gender2" [style]="{'margin': '0 8px'}">Female</label>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="field mb-3 col-12 md:col-12 lg:col-6">
+          <label for="work">Description</label>
+          <textarea rows="3" cols="30" #work="ngModel" id="work" type="text" name="work"
+            placeholder="Description..." required pInputTextarea maxlength="100"
+            [(ngModel)]="employee.work"
+            [ngClass]="{'ng-dirty': (work.invalid && submitted) || (work.dirty && work.invalid)}"></textarea>
+          <small *ngIf="(work.invalid && submitted) || (work.dirty && work.invalid)"
+            class="p-error">Description is required</small>
+        </div>
+      </div>
+
+      <div class="card-footer text-muted">
+        <div class="footer-btn">
+          <p-button [routerLink]="['/employee-list']" label="Cancel" icon="pi pi-times" styleClass="p-button-secondary w-full md:w-auto lg:w-auto h-2.5rem mr-3 mb-3 md:mb-0 lg:mb-0 "></p-button>
+          <p-button label="Save" icon="pi pi-check" (click)="save()" styleClass="w-full md:w-auto lg:w-auto h-2.5rem"></p-button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div> -->
+

@@ -1,0 +1,65 @@
+<div class="navigation">
+  <ul>
+    <div style="margin-top:12px;">
+      <a [routerLink]="['/home']">
+        <span class="icon">
+            <img alt="logo"  src="../assets/images/logo.png" style="width: 1.5rem" />
+        </span>
+        <span class="title">
+         <h4> Employee</h4>
+        </span>
+      </a>
+    </div>
+    <li>
+      <a [routerLink]="['/home']" >
+        <span class="icon">
+          <i class="pi pi-home"></i>
+        </span>
+        <span class="title">Home</span>
+      </a>
+    </li>
+    <li *ngIf="data.employee">
+      <a [routerLink]="['/employee-list']" >
+        <span class="icon">
+          <i class="pi pi-users"></i>
+        </span>
+        <span class="title">Team</span>
+      </a>
+    </li>
+    <li *ngIf="data.employee">
+      <a [routerLink]="['/employee-add']" >
+        <span class="icon">
+          <i class="pi pi-id-card"></i>
+        </span>
+        <span class="title">Add Employee</span>
+      </a>
+    </li>
+    <li>
+    <li >
+      <a [routerLink]="['/help']" >
+        <span class="icon">
+          <i class="pi pi-cog"></i>
+        </span>
+        <span class="title">Setting</span>
+      </a>
+    </li>
+    <li *ngIf="!data.employee">
+      <a [routerLink]="['/login']">
+        <span class="icon">
+          <i class="pi pi-fw pi-sign-in"></i>
+        </span>
+        <span class="title">Login</span>
+      </a>
+    </li>
+
+    <li *ngIf="data.employee">
+      <a  [routerLink]="['/login']" (click)="logout()">
+        <span class="icon">
+          <i class="pi pi-fw pi-sign-in"></i>
+        </span>
+        <span class="title">Sign Out</span>
+      </a>
+    </li>
+  </ul>
+</div>
+

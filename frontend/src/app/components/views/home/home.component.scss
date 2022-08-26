@@ -1,0 +1,31 @@
+.grid {
+  justify-content: center;
+  .product-item  {
+
+    .product-item-content {
+      border: 1px solid var(--surface-d);
+      border-radius: 3px;
+      margin: .3rem;
+      text-align: center;
+      padding: 2rem 0;
+      h3 {
+        font-weight: 500;
+      }
+      h5 {
+        font-weight: 400;
+      }
+    }
+    .product-image {
+      width: 50%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+  }
+}
+
+
+.team-img {
+  img {
+    width: 45px;
+    height: 45px;
+  }
+}

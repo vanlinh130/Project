@@ -1,0 +1,106 @@
+<app-navigation></app-navigation>
+<div class="main">
+  <app-header></app-header>
+  <section id="employeeList">
+    <div class="container">
+      <div class="col-12">
+
+        <!-- Đang nạp lên server , đang tải dữ liệu về -->
+        <div *ngIf="!employees" class="m-auto">
+          <div class="custom-skeleton p-4">
+            <div class="flex mb-3">
+              <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+              <div>
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height=".5rem"></p-skeleton>
+              </div>
+            </div>
+            <p-skeleton width="100%" height="150px"></p-skeleton>
+            <div class="flex justify-content-between mt-3">
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+            </div>
+          </div>
+        </div>
+
+        <!-- khi có thông đầy, Đã tải về dữ liệu thành công -->
+        <div *ngIf="employees">
+          <div class="card">
+            <p-toolbar styleClass="mb-3">
+              <ng-template pTemplate="left">
+                <button [routerLink]="['/employee-add']" pButton pRipple label="New" icon="pi pi-plus"
+                  class="p-button-success mr-2 mb-2 md:mb-0 lg:mb-0"></button>
+                <button pButton pRipple (click)="deleteSelectedEmployees()" icon="pi pi-trash" class="p-button-danger mb-2 md:mb-0 lg:mb-0"
+                  [disabled]="!selectedEmployees || !selectedEmployees.length"></button>
+              </ng-template>
+              <ng-template pTemplate="right">
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+                  class="mr-2 inline-block" [style]="{'height': '40px'}"></p-fileUpload>
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+              </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="employees" [rows]="4" [paginator]="true" [(selection)]="selectedEmployees"
+              [rowHover]="true" [showCurrentPageReport]="true">
+              <ng-template pTemplate="caption">
+                <div class="manage-employees">
+                  <div class="icon-manage">
+                    <i class="pi pi-id-card"></i>
+                    <h4 >Manage Employees</h4>
+                  </div>
+                  <span class="p-input-icon-left">
+                    <p-columnFilter field="name" placeholder="Search..."></p-columnFilter>
+                  </span>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                  </th>
+                  <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                  <!-- <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th> -->
+                  <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                  <th pSortableColumn="enrollDate">Date <p-sortIcon field="enrollDate"></p-sortIcon></th>
+                  <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                  <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                  <th>Actions</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                  </td>
+                  <td>{{product.name}}</td>
+                  <!-- <td> <img src="{{product.image}}" [style]="{'width': '40px', 'height': '35px'}"> </td> -->
+                  <td>{{product.email}}</td>
+                  <td>{{product.enrollDate | date:'MM/dd/yyyy'}}</td>
+                  <td>{{product.status}}</td>
+                  <td>{{product.phone}}</td>
+                  <td class="icon-btn flex">
+                    <button [routerLink]="['/employee-detail/' + product._id]" pButton pRipple icon="pi pi-th-large"
+                      class="p-button-success"></button>
+                    <button [routerLink]="['/employee-edit/' + product._id]" pButton pRipple icon="pi pi-pencil"
+                      class="p-button-warning "></button>
+                    <div class="btn-group">
+                      <app-employee-delete [icon]="icon" (deleteRequest)="delete(product._id)"></app-employee-delete>
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="summary">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                  In total there are {{employees ? employees.length : 0 }} employees.
+                </div>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

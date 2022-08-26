@@ -1,0 +1,265 @@
+<div class="header-main">
+  <div class="header flex justify-content-between align-items-center px-5 border-bottom-1 surface-border relative lg:static">
+    <div class="flex">
+      <a class="icon-bar cursor-pointer text-600" (click)="visibleSidebar = true" >
+        <i class="pi pi-bars text-4xl"></i>
+      </a>
+    </div>
+
+    <a class="cursor-pointer lg:hidden" (click)="visileEllipsis()">
+      <i class="pi pi-ellipsis-v text-2xl"></i>
+    </a>
+
+    <ul  class="list-none p-0 m-0 hidden lg:flex lg:align-items-center select-none
+        lg:flex-row surface-section border-1 lg:border-none surface-border right-0
+        top-100 z-1 shadow-2 lg:shadow-none absolute lg:static">
+      <li (click)="avatarSidebar = false">
+        <a class="flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900
+         hover:surface-100 border-round cursor-pointer">
+          <i *ngIf="!data.employee"  class="pi pi-inbox text-base lg:text-2xl lg:mr-0"></i>
+          <i *ngIf="data.employee" class="pi pi-inbox text-base lg:text-2xl lg:mr-0" pBadge severity="danger"></i>
+        </a>
+      </li>
+      <li (click)="avatarSidebar = false">
+        <a class="flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900
+          hover:surface-100 border-round cursor-pointer">
+          <i *ngIf="!data.employee"  class="pi pi-bell text-base lg:text-2xl lg:mr-0"  ></i>
+          <i *ngIf="data.employee" class="pi pi-bell text-base lg:text-2xl lg:mr-0" pBadge value="5" ></i>
+        </a>
+      </li>
+      <li class="border-top-1 surface-border lg:border-top-none" (click)="visibleAvatar()">
+        <a class="user-img flex p-3 lg:px-3 lg:py-2  align-items-center hover:surface-100 border-round cursor-pointer">
+          <img *ngIf="!data.employee" src="../../../assets/images/img-avatars/avatar2.jpg">
+          <img *ngIf="data.employee" src="../../../assets/images/img-avatars/avatar1.png">
+          <!-- <img *ngIf="data.employee" src="{{data.employee.image}}"> -->
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- navigation slidebar -->
+<p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000">
+  <div class="navigation">
+    <ul>
+      <div style="margin-top:12px;">
+        <a [routerLink]="['/home']">
+          <span class="icon">
+              <img alt="logo"  src="../assets/images/logo.png" style="width: 1.5rem" />
+          </span>
+          <span class="title">
+           <h4> Employee</h4>
+          </span>
+          <button (click)="visibleSidebar = false"  pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-text" [style]="{'margin-left': '10px', 'color' : 'white'}"></button>
+        </a>
+      </div>
+
+      <li>
+        <a [routerLink]="['/home']" >
+          <span class="icon">
+            <i class="pi pi-home"></i>
+          </span>
+          <span class="title">Home</span>
+        </a>
+      </li>
+      <li *ngIf="data.employee">
+        <a [routerLink]="['/employee-list']" >
+          <span class="icon">
+            <i class="pi pi-users"></i>
+          </span>
+          <span class="title">Team</span>
+        </a>
+      </li>
+      <li *ngIf="data.employee">
+        <a [routerLink]="['/employee-add']" >
+          <span class="icon">
+            <i class="pi pi-id-card"></i>
+          </span>
+          <span class="title">Add Employee</span>
+        </a>
+      </li>
+      <li>
+      <li >
+        <a [routerLink]="['/help']" >
+          <span class="icon">
+            <i class="pi pi-cog"></i>
+          </span>
+          <span class="title">Setting</span>
+        </a>
+      </li>
+      <li *ngIf="!data.employee">
+        <a [routerLink]="['/login']">
+          <span class="icon">
+            <i class="pi pi-fw pi-sign-in"></i>
+          </span>
+          <span class="title">Login</span>
+        </a>
+      </li>
+
+      <li *ngIf="data.employee">
+        <a  [routerLink]="['/login']" (click)="logout()">
+          <span class="icon">
+            <i class="pi pi-fw pi-sign-in"></i>
+          </span>
+          <span class="title">Sign Out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</p-sidebar>
+
+
+<!-- AtavarSidebar -->
+<p-sidebar [(visible)]="avatarSidebar" [modal]="false" position="right" [baseZIndex]="10000">
+
+  <div *ngIf="!data.employee">
+    <ul class="list-none p-2 m-0 origin-bottom animation-duration-150 overflow-hidden animation-ease-in-out">
+      <li [routerLink]="['/login']">
+        <a class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-user mr-2"></i>
+          <span class="font-medium">Profile</span>
+          <span class="p-ink"></span>
+        </a>
+      </li>
+      <li [routerLink]="['/register']" >
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-sign-in mr-2"></i>
+          <span class="font-medium">Register</span>
+        </a>
+      </li>
+      <li [routerLink]="['/login']">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-sign-in mr-2"></i>
+          <span class="font-medium">Login</span>
+        </a>
+      </li>
+      <hr>
+      <li (click)="avatarSidebar = false">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-globe mr-2"></i>
+          <span class="font-medium">Location : Viet Nam</span>
+        </a>
+      </li>
+      <li (click)="avatarSidebar = false">
+        <a class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-share-alt mr-2"></i>
+          <span class="font-medium">Language: Tieng Viet</span>
+        </a>
+      </li>
+      <li [routerLink]="['/help']">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-cog mr-2"></i>
+          <span class="font-medium">Settings</span>
+        </a>
+      </li>
+      <li [routerLink]="['/help']" >
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-question-circle mr-2"></i>
+          <span class="font-medium">Help</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="data.employee">
+    <ul class="list-none p-2 m-0 origin-bottom animation-duration-150 overflow-hidden animation-ease-in-out">
+      <li [routerLink]="['/employee-list']">
+        <a class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-user mr-2"></i>
+          <span class="font-medium">{{data.employee.name}}</span>
+          <span class="p-ink"></span>
+        </a>
+      </li>
+      <li (click)="logout()">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-sign-out mr-2"></i>
+          <span class="font-medium">Sign Out</span>
+        </a>
+      </li>
+      <hr>
+      <li (click)="avatarSidebar = false">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-globe mr-2"></i>
+          <span class="font-medium">Location : Viet Nam</span>
+        </a>
+      </li>
+      <li (click)="avatarSidebar = false">
+        <a class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-share-alt mr-2"></i>
+          <span class="font-medium">Language: Tieng Viet</span>
+        </a>
+      </li>
+      <li [routerLink]="['/help']">
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-cog mr-2"></i>
+          <span class="font-medium">Settings</span>
+          <span class="p-ink"></span>
+        </a>
+      </li>
+      <li [routerLink]="['/help']" >
+        <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+          <i class="pi pi-question-circle mr-2"></i>
+          <span class="font-medium">Help</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</p-sidebar>
+
+<!-- EllipsisSidebar -->
+<div class="lg:hidden">
+  <p-sidebar [(visible)]="ellipsisSidebar" [modal]="false" position="top" [baseZIndex]="1000">
+    <div *ngIf="!data.employee" >
+      <ul class="list-none p-2 m-0 origin-bottom animation-duration-150 overflow-hidden animation-ease-in-out">
+        <li (click)="ellipsisSidebar = false">
+          <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+            <i class="pi pi-inbox  mr-3 text-2xl"></i>
+            <span class="font-medium">Inbox</span>
+          </a>
+        </li>
+        <li (click)="ellipsisSidebar = false">
+          <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+            <i class="pi pi-bell  mr-3 text-2xl"></i>
+            <span class="font-medium">Notifications</span>
+          </a>
+        </li>
+        <li (click)="visibleAvatar()" class="border-top-1 surface-border">
+          <a class="flex p-3 lg:px-3 lg:py-2 align-items-center hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors">
+            <img src="../../../assets/images/img-avatars/avatar2.jpg" class="mr-3 lg:mr-0" style="width: 32px; height: 32px;">
+            <div class="block lg:hidden">
+              <div class="text-900 font-medium">Profile</div>
+              <span class="text-600 font-medium text-sm">Role</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="data.employee">
+      <ul class="list-none p-2 m-0 origin-bottom animation-duration-150 overflow-hidden animation-ease-in-out">
+        <li (click)="ellipsisSidebar = false">
+          <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+            <i class="pi pi-inbox mr-3 text-2xl" pBadge severity="danger"></i>
+            <span class="font-medium" >Inbox</span>
+          </a>
+        </li>
+        <li (click)="ellipsisSidebar = false">
+          <a  class="flex align-items-center cursor-pointer p-3 hover:bg-bluegray-100 border-round transition-duration-150 transition-colors">
+            <i class="pi pi-bell mr-3 text-2xl" pBadge value="5"></i>
+            <span class="font-medium">Notifications</span>
+          </a>
+        </li>
+        <li (click)="visibleAvatar()" class="border-top-1 surface-border lg:border-top-none">
+          <a class="flex p-3 lg:px-3 lg:py-2 align-items-center hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors">
+            <img src="../../../assets/images/img-avatars/avatar1.png" class="mr-3 lg:mr-0" style="width: 32px; height: 32px;">
+            <div class="block lg:hidden">
+              <div class="text-900 font-medium">{{data.employee.name}}</div>
+              <span class="text-600 font-medium text-sm">{{data.employee.role}}</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </p-sidebar>
+</div>
